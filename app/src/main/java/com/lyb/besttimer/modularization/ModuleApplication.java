@@ -2,8 +2,7 @@ package com.lyb.besttimer.modularization;
 
 import android.content.Context;
 
-import com.lyb.besttimer.annotation_api.BindClassInit;
-import com.lyb.besttimer.lib_common.BaseApplication;
+import com.lyb.besttimer.common_work.BaseApplication;
 
 /**
  * module application
@@ -16,7 +15,6 @@ public class ModuleApplication extends BaseApplication {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        BindClassInit.getInstance().init();
     }
 
     @Override

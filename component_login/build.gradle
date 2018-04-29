@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+if (isModule) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
     compileSdkVersion 26
@@ -24,7 +28,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':lib_common')
+    implementation project(':common_util')
+    implementation project(':common_work')
+    compile project(':annotation_api')
     if (isModule) {
         annotationProcessor project(':annotation_compiler')
     }

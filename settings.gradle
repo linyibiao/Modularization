@@ -1,1 +1,1 @@
-include ':app', ':annotation_compiler', ':annotation_bean', ':lib_common', ':annotation_api', ':component_login', ':component_home'
+include ':app', ':annotation_compiler', ':annotation_bean', ':common_util', ':annotation_api', ':component_login', ':component_home', ':common_work'
