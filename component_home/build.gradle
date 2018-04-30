@@ -1,6 +1,7 @@
-if (isModule) {
+if (isModule.toBoolean()){
     apply plugin: 'com.android.application'
-} else {
+
+}else {
     apply plugin: 'com.android.library'
 }
 
@@ -10,6 +11,9 @@ android {
 
 
     defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "com.lyb.besttimer.modularization"
+        }
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -24,14 +28,22 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            if (isModule.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':common_util')
     implementation project(':common_work')
-    compile project(':annotation_api')
-    if (isModule) {
-        annotationProcessor project(':annotation_compiler')
-    }
+    api project(':annotation_api')
+    annotationProcessor project(':annotation_compiler')
 }

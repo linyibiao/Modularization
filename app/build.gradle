@@ -19,13 +19,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':common_util')
-    implementation project(':common_work')
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    compile project(':annotation_api')
+    implementation project(':common_work')
+    api project(':annotation_api')
     annotationProcessor project(':annotation_compiler')
-    if (!isModule) {
-        compile project(':component_login')
-        compile project(':component_home')
+    if (!isModule.toBoolean()) {
+        api project(':component_login')
+        api project(':component_home')
     }
 }

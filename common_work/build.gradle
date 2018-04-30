@@ -23,6 +23,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':common_util')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':common_util')
 }
