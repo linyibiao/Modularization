@@ -12,6 +12,7 @@ import com.lyb.besttimer.common_work.http.CommonHttpUtil;
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.functions.Consumer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,17 +25,23 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         final TextView homeTv = findViewById(R.id.tv_home);
-        CommonHttpUtil.getRepoList(new Callback<List<Repo>>() {
+//        CommonHttpUtil.getRepoList(new Callback<List<Repo>>() {
+//            @Override
+//            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+//                if (response.body() != null) {
+//                    homeTv.setText(String.format(Locale.CHINESE, "%d", response.body().size()));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Repo>> call, Throwable t) {
+//
+//            }
+//        });
+        CommonHttpUtil.getRepoList_rx(new Consumer<List<Repo>>() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                if (response.body() != null) {
-                    homeTv.setText(String.format(Locale.CHINESE, "%d", response.body().size()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
-
+            public void accept(List<Repo> repos) throws Exception {
+                homeTv.setText(String.format(Locale.CHINESE, "%d", repos.size()));
             }
         });
     }
