@@ -33,7 +33,7 @@ public class CommonHttpUtil {
         service("https://api.github.com/")
                 .listRepos_rx("octocat")
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer);
     }
 
