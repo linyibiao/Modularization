@@ -13,7 +13,7 @@ public class BindClassCenter {
     public static Class<?> findClass(String path) {
         Class<?> aClass = bindMap.get(path);
         if (aClass == null) {
-            String simpleName = path.replaceAll("/", "$$");
+            String simpleName = path.replaceAll("/", "\\$\\$");
             try {
                 IGetClass iGetClass = (IGetClass) Class.forName(BindClassCenter.packageName + "." + simpleName).getConstructor().newInstance();
                 bindMap.put(path, aClass = iGetClass.getTargetClass());

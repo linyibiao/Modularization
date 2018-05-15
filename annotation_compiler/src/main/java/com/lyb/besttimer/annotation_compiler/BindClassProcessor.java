@@ -57,7 +57,7 @@ public class BindClassProcessor extends AbstractProcessor {
 
     private TypeSpec poetCreateGetClass(TypeElement typeElement) {
         BindClass bindClass = typeElement.getAnnotation(BindClass.class);
-        String simpleName = bindClass.path().replaceAll("/", "$$");
+        String simpleName = bindClass.path().replaceAll("/", "\\$\\$");
         return TypeSpec.classBuilder(simpleName)
                 .addSuperinterface(ClassName.get(IGetClass.class))
                 .addModifiers(Modifier.PUBLIC)
